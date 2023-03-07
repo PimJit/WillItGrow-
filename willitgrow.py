@@ -6,7 +6,8 @@ zipcode_input = "98105"
 #Part 2: get plant hardiness based on the zipcode from Frostline
 
 #Part 3: get plants from Perenial
-website = "https://perenual.com/api/species-list?page=1&key=sk-gneG64079b491eeca179"
+plant_dict = {"key": }
+plant_request = "https://perenual.com/api/species-list?page=1&key=sk-gneG64079b491eeca179"
 
 #Part 4: compare the plant hardiness to zipcode hardiness
 
