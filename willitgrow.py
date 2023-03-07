@@ -1,6 +1,6 @@
 import urllib.parse, urllib.request, urllib.error, json
 #Part 1: ask plant name and zipcode
-plant_name_input = "fir"
+plant_name = "fir"
 zipcode_input = "98105"
 
 #Part 2: get plant hardiness based on the zipcode from Frostline
@@ -23,7 +23,7 @@ plant_request = "https://perenual.com/api/species"
 page_num = 1
 temp_plant_list = {}
 
-def fetch_plant_data():
+def fetch_plant_data(plant_name_input):
     try:
         url_request = "-list?page="+str(page_num)+"&key=sk-gneG64079b491eeca179"+"&q="+plant_name_input
         print(plant_request+url_request)
@@ -38,25 +38,32 @@ def fetchPlantHardness(id):
     temp_plant_hard_max = url_request_id["hardiness"]["max"]
     return [temp_plant_hard_min, temp_plant_hard_max]
 
-def fetchPlant():
-    data = fetch_plant_data()
-    for plant in data["data"]:
-        temp_plant_list[plant["id"]] = fetchPlantHardness(plant["id"])
+def fetchPlant(plant_name_input):
+    data = fetch_plant_data(plant_name_input)
+    if data == None:
+        return None
+    else:
+        for plant in data["data"]:
+            temp_plant_list[plant["id"]] = fetchPlantHardness(plant["id"])
+        return (temp_plant_list)
 
-fetchPlant()
-print(temp_plant_list)
 #Part 4: compare the plant hardiness to zipcode hardiness
 plant_list = []
-temp_plant_list = { 1:[7,8], 2:[5,8], 3:[5,8]}
-def compare_plant_to_zone(temp_plant_list, hardiness_zone):
+def compare_plant_to_zone(temp_plant_list, hardiness_zone, page_num, plant_name_input):
     plant_dict = {}
     while len(plant_list) < 5:
-        if temp_plant_list['hardiness']['min'] >= hardiness_zone <= temp_plant_list['hardiness']['min']:
-            plant_list.append(temp_plant_list)
-        else:
-            if page_num < 3:
-                page_num += 1
-                fetchPlant(name_input)
+        for plant in temp_plant_list:
+            if plant[0] >= hardiness_zone <= plant[1]:
+                plant_list.append(plant)
+            else:
+                if page_num < 3:
+                    page_num += 1
+                    fetchPlant(plant_name_input)
+    return plant_list
+
+compare_plant_to_zone(fetchPlant(plant_name), zipcode_zone(),1,plant_name)
+
+print(plant_list)
 
 
 #Part 5: repeat until we get 5 plants that matches the hardiness zone
@@ -64,4 +71,3 @@ def compare_plant_to_zone(temp_plant_list, hardiness_zone):
 #Part 6: return list of plants
 
 #plant_list = { plant key: [min,max], plant_key: [min,max], plant_key: [min,max] }
-plant_list = { 1: [7,8], 2:[5,8], 3:[5,8] }
