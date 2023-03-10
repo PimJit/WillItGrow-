@@ -1,11 +1,9 @@
 import urllib.parse, urllib.request, urllib.error, json
 #Part 1: ask plant name and zipcode
-plant_name = "fir"
-zipcode_input = "98105"
 plant_list_data = {}
 
 #Part 2: get plant hardiness based on the zipcode from Frostline
-def zipcode_zone():
+def zipcode_zone(zipcode_input):
     try:
         zipcode_request = "https://phzmapi.org/"
         zipcode_request = zipcode_request + zipcode_input + ".json"
@@ -60,22 +58,18 @@ def compare_plant_to_zone(temp_plant_list, hardiness_zone, page_num, plant_name_
         for plant in temp_plant_list:
             if temp_plant_list[plant][1] >= hardiness_zone >= temp_plant_list[plant][0]:
                 plant_list.append(plant)
-            else:
-                del plant_list_data[plant]
+                plant_dict[plant] = plant_list_data[plant]
+                if len(plant_list) == 5:
+                    break
         temp_plant_list.clear()
         if page_num < 3:
             page_num += 1
             fetchPlant(plant_name_input)
+        else:
+            break
     return plant_list
 
-compare_plant_to_zone(fetchPlant(plant_name), zipcode_zone(),1,plant_name)
+compare_plant_to_zone(fetchPlant("fir"), zipcode_zone("98105"),1,"fir")
 print(plant_list)
-
-
-
-
-#Part 5: repeat until we get 5 plants that matches the hardiness zone
-
-#Part 6: return list of plants
 
 #plant_list = { plant key: [min,max], plant_key: [min,max], plant_key: [min,max] }
