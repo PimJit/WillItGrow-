@@ -12,7 +12,7 @@ def zipcode_zone(zipcode_input):
         zipcode_data = json.loads(zipcode_response_str)
         hardiness_zone = int((zipcode_data['zone'])[0])
         return hardiness_zone
-    except urllib.error.URLError as e:
+    except urllib.ertestror.URLError as e:
         print('Error from server. Error code: ', e.code)
 
 
