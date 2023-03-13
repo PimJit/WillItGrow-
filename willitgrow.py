@@ -67,7 +67,8 @@ def compare_plant_to_zone(temp_plant_list, hardiness_zone, page_num, plant_name_
             fetchPlant(plant_name_input)
         else:
             break
-    return plant_list
+    final_plant_data = [plant_list, plant_dict]
+    return final_plant_data
 
 compare_plant_to_zone(fetchPlant("fir"), zipcode_zone("98105"),1,"fir")
 print(plant_list)
