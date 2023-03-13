@@ -72,4 +72,45 @@ def compare_plant_to_zone(temp_plant_list, hardiness_zone, page_num, plant_name_
 compare_plant_to_zone(fetchPlant("fir"), zipcode_zone("98105"),1,"fir")
 print(plant_list)
 
-#plant_list = { plant key: [min,max], plant_key: [min,max], plant_key: [min,max] }
+def webDataRetrieve(id,dict):
+    common_name = dict[id]['common_name']
+    scientific_name = dict[id]['scientific_name'][0]
+    other_name = ""
+    if dict[id]['other_name'] != None:
+        for name in dict[id]['other_name']:
+            other_name = other_name + name+". "
+    else:
+        other_name = 'Sorry no data found.'
+    if 'thumbnail' in dict[id]['default_image']:
+        image = dict[id]['default_image']['thumbnail']
+    else:
+        image = 'Sorry no data found.'
+    plant_type = dict[id]['type']
+    if dict[id]['hardiness']["min"] == dict[id]['hardiness']["max"]:
+        hardness = dict[id]['hardiness']["min"]
+    else:
+        hardness = dict[id]['hardiness']["min"] + " to " + dict[id]['hardiness']["max"]
+    dimensions = dict[id]['dimension']
+    sunlight = ""
+    for name in dict[id]['sunlight']:
+        sunlight = sunlight + name + ". "
+    watering = dict[id]['watering']
+    if dict[id]["maintenance"] != None:
+        maintain = dict[id]['maintenance']
+    else:
+        maintain = 'Sorry no data found.'
+    care = dict[id]['care_level']
+    propagation = ""
+    if dict[id]["propagation"] != ['']:
+        for name in dict[id]['propagation']:
+            propagation = propagation + name + ". "
+    else:
+        propagation = 'Sorry no data found.'
+    attracts = ""
+    if dict[id]['attracts'] != ['']:
+        for name in dict[id]['attracts']:
+            attracts = attracts + name + ". "
+    else:
+        attracts = 'Sorry no data found.'
+    return {"common_name": common_name, "scientific_name": scientific_name, "other_name": other_name, "image": image, "plant_type": plant_type, "hardness": hardness, "dimensions": dimensions, "sunlight": sunlight, "watering": watering, "maintain": maintain, "care":care, "propagation": propagation, "attracts": attracts}
+
