@@ -26,14 +26,21 @@ key = key.key
 
 def fetch_plant_data(plant_name_input):
     try:
-        url_request = ("-list?page="+str(page_num)+"&key="+ str(key) +"&q="+plant_name_input)
-        return json.loads(urllib.request.urlopen(url=plant_request+url_request).read())
+        url_request = plant_request + "-list?page="+str(page_num)+"&key="+ str(key) +"&q="+plant_name_input
+        response = urllib.request.urlopen(url_request)
+        plant_str = response.read()
+        data = json.loads(plant_str)
+        return data
     except urllib.error.URLError as e:
         print(str(e))
         return None
-
+#this function sucessfully return the url that we need
 def fetchPlantHardness(id):
-    url_request_id = json.loads(urllib.request.urlopen(url=plant_request+"/details/"+str(id)+"?key="+str(key)).read())
+    url_request = plant_request + "/details/"+str(id)+"?key="+str(key)
+    response = urllib.request.urlopen(url_request)
+    plant_str = response.read()
+    url_request_id = json.loads(plant_str)
+    # url_request_id = json.loads(urllib.request.urlopen(url=plant_request+"/details/"+str(id)+"?key="+str(key)).read())
     temp_plant_hard_min = int(url_request_id["hardiness"]["min"])
     temp_plant_hard_max = int(url_request_id["hardiness"]["max"])
     plant_list_data[id] = url_request_id
@@ -72,8 +79,8 @@ def compare_plant_to_zone(temp_plant_list, hardiness_zone, page_num, plant_name_
     final_plant_data = [plant_list, plant_dict]
     return final_plant_data
 
-compare_plant_to_zone(fetchPlant("fir"), zipcode_zone("98105"),1,"fir")
-print(plant_list)
+# compare_plant_to_zone(fetchPlant("fir"), zipcode_zone("98105"),1,"fir")
+# print(plant_list)
 
 def webDataRetrieve(id,dict):
     common_name = dict[id]['common_name']

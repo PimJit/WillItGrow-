@@ -16,90 +16,36 @@
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
             <div class="row p-5 d-flex justify-content-center">
-                <div class="col-sm-auto">
+                {% for plant in final_list %}
+                    <div class="col-sm-auto">
                     <div class="card" style="width: 25rem;">
-                      <img class="card-img-top" src={{ plant1_dict["image"] }} alt="Cardimagecap">
+                      <img class="card-img-top" src={{ plant["image"] }} alt="Cardimagecap">
                         <div class="list-group">
                             <div class="card-body list-group-item">
                                 <h5 class="card-title">Plant Name</h5>
-                                <p class="card-text">Common name: {{ plant1_dict["common_name"] }}</p>
-                                <p class="card-text">scientific name: {{ plant1_dict["scientific_name"] }}</p>
-                                <p class="card-text">other name: {{ plant1_dict["other_name"] }}</p>
+                                <p class="card-text">Common name: {{ plant["common_name"] }}</p>
+                                <p class="card-text">scientific name: {{ plant["scientific_name"] }}</p>
+                                <p class="card-text">other name: {{ plant["other_name"] }}</p>
                             </div>
                             <div class="card-body list-group-item">
                                 <h5 class="card-title">Plant info</h5>
-                                <p class="card-text">type: {{ plant1_dict["plant_type"] }}</p>
-                                <p class="card-text">dimension: {{ plant1_dict["dimensions"] }}</p>
-                                <p class="card-text">hardiness zone: {{ plant1_dict["hardness"] }}</p>
-                                <p class="card-text">Attracts: {{ plant1_dict["attracts"] }}</p>
-                                <p class="card-text">Propagation: {{ plant1_dict["propagation"] }}</p>
+                                <p class="card-text">type: {{ plant["plant_type"] }}</p>
+                                <p class="card-text">dimension: {{ plant["dimensions"] }}</p>
+                                <p class="card-text">hardiness zone: {{ plant["hardness"] }}</p>
+                                <p class="card-text">Attracts: {{ plant["attracts"] }}</p>
+                                <p class="card-text">Propagation: {{ plant["propagation"] }}</p>
                             </div>
                             <div class="card-body list-group-item">
                                 <h5 class="card-title">Plant Care</h5>
-                                <p class="card-text">Sunlight: {{ plant1_dict["sunlight"] }}</p>
-                                <p class="card-text">Watering: {{ plant1_dict["watering"] }}</p>
-                                <p class="card-text">Maintenance: {{ plant1_dict["maintain"] }}</p>
-                                <p class="card-text">Overall Care: {{ plant1_dict["care"] }}</p>
+                                <p class="card-text">Sunlight: {{ plant["sunlight"] }}</p>
+                                <p class="card-text">Watering: {{ plant["watering"] }}</p>
+                                <p class="card-text">Maintenance: {{ plant["maintain"] }}</p>
+                                <p class="card-text">Overall Care: {{ plant["care"] }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-auto">
-                    <div class="card" style="width: 25rem;">
-                      <img class="card-img-top" src={{ plant2_dict["image"] }} alt="Cardimagecap">
-                        <div class="list-group">
-                            <div class="card-body list-group-item">
-                                <h5 class="card-title">Plant Name</h5>
-                                <p class="card-text">Common name: {{ plant2_dict["common_name"] }}</p>
-                                <p class="card-text">scientific name: {{ plant2_dict["scientific_name"] }}</p>
-                                <p class="card-text">other name: {{ plant2_dict["other_name"] }}</p>
-                            </div>
-                            <div class="card-body list-group-item">
-                                <h5 class="card-title">Plant info</h5>
-                                <p class="card-text">type: {{ plant2_dict["plant_type"] }}</p>
-                                <p class="card-text">dimension: {{ plant2_dict["dimensions"] }}</p>
-                                <p class="card-text">hardiness zone: {{ plant2_dict["hardness"] }}</p>
-                                <p class="card-text">Attracts: {{ plant2_dict["attracts"] }}</p>
-                                <p class="card-text">Propagation: {{ plant2_dict["propagation"] }}</p>
-                            </div>
-                            <div class="card-body list-group-item">
-                                <h5 class="card-title">Plant Care</h5>
-                                <p class="card-text">Sunlight: {{ plant2_dict["sunlight"] }}</p>
-                                <p class="card-text">Watering: {{ plant2_dict["watering"] }}</p>
-                                <p class="card-text">Maintenance: {{ plant2_dict["maintain"] }}</p>
-                                <p class="card-text">Overall Care: {{ plant2_dict["care"] }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-auto">
-                    <div class="card" style="width: 25rem;">
-                      <img class="card-img-top" src={{ plant3_dict["image"] }} alt="Cardimagecap">
-                        <div class="list-group">
-                            <div class="card-body list-group-item">
-                                <h5 class="card-title">Plant Name</h5>
-                                <p class="card-text">Common name: {{ plant3_dict["common_name"] }}</p>
-                                <p class="card-text">scientific name: {{ plant3_dict["scientific_name"] }}</p>
-                                <p class="card-text">other name: {{ plant3_dict["other_name"] }}</p>
-                            </div>
-                            <div class="card-body list-group-item">
-                                <h5 class="card-title">Plant info</h5>
-                                <p class="card-text">type: {{ plant3_dict["plant_type"] }}</p>
-                                <p class="card-text">dimension: {{ plant3_dict["dimensions"] }}</p>
-                                <p class="card-text">hardiness zone: {{ plant3_dict["hardness"] }}</p>
-                                <p class="card-text">Attracts: {{ plant3_dict["attracts"] }}</p>
-                                <p class="card-text">Propagation: {{ plant3_dict["propagation"] }}</p>
-                            </div>
-                            <div class="card-body list-group-item">
-                                <h5 class="card-title">Plant Care</h5>
-                                <p class="card-text">Sunlight: {{ plant3_dict["sunlight"] }}</p>
-                                <p class="card-text">Watering: {{ plant3_dict["watering"] }}</p>
-                                <p class="card-text">Maintenance: {{ plant3_dict["maintain"] }}</p>
-                                <p class="card-text">Overall Care: {{ plant3_dict["care"] }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {%  endfor %}
             </div>
             <div class="row p-5 d-flex justify-content-center">
                 <div class="col-sm-auto">
