@@ -26,14 +26,14 @@ key = key.key
 
 def fetch_plant_data(plant_name_input):
     try:
-        url_request = "-list?page="+str(page_num)+"&key="+ key +"&q="+plant_name_input
+        url_request = ("-list?page="+str(page_num)+"&key="+ str(key) +"&q="+plant_name_input)
         return json.loads(urllib.request.urlopen(url=plant_request+url_request).read())
     except urllib.error.URLError as e:
         print(str(e))
         return None
 
 def fetchPlantHardness(id):
-    url_request_id = json.loads(urllib.request.urlopen(url=plant_request+"/details/"+str(id)+"?key="+key).read())
+    url_request_id = json.loads(urllib.request.urlopen(url=plant_request+"/details/"+str(id)+"?key="+str(key)).read())
     temp_plant_hard_min = int(url_request_id["hardiness"]["min"])
     temp_plant_hard_max = int(url_request_id["hardiness"]["max"])
     plant_list_data[id] = url_request_id
