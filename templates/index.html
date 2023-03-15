@@ -1,23 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    </head>
-    <body>
+{% extends "template.html" %}
+
+{% block title %}Will It Grow{% endblock %}
+
+{% block content %}
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-        <div class="d-inline-flex">
-            <form action="/result-page" method="post">
-            <div class="input-group mb-3">
-                <label for="plant_name">Desired Plant Name</label>
-                <input type="text" class="form-control" name="plant_name" id="plant_name" required><br>
+        <div class="p-5 text-center bg-success text-white rounded-3 d-flex align-items-center justify-content-center" style="
+            height: 600px;
+          ">
+          <div class="mask" >
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white">
+                <header>
+				    <h1 class="display-1">Will It Grow?</h1>
+			    </header>
+                <form method="POST" action="results">
+                  <div class="row">
+                    <div class="col">
+                      <!-- Name input -->
+                      <div class="form-outline">
+                        <label class="form-label" for="plant_name">Plant Name</label>
+                        <input type="text" id="plant_name" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <!-- Email input -->
+                      <div class="form-outline mb-5">
+                        <label class="form-label" for="zipcode">Zipcode</label>
+                        <input type="text" id="zipcode" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                    <input type="submit" class="btn btn-lg btn-primary">Search</input>
+                </form>
             </div>
-            <div class="input-group mb-3">
-                <label for="plant_name">Zipcode</label>
-                <input type="text" class="form-control" name="zipcode" id="zipcode" required><br>
-            </div>
-        </form>
+          </div>
+        </div>
         </div>
 
-    </body>
-</html>
+
+
+
+{% endblock %}
