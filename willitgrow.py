@@ -1,4 +1,5 @@
 import urllib.parse, urllib.request, urllib.error, json
+import key
 #Part 1: ask plant name and zipcode
 plant_list_data = {}
 
@@ -21,17 +22,18 @@ def zipcode_zone(zipcode_input):
 plant_request = "https://perenual.com/api/species"
 page_num = 1
 temp_plant_list = {}
+key = key.key
 
 def fetch_plant_data(plant_name_input):
     try:
-        url_request = "-list?page="+str(page_num)+"&key=sk-gneG64079b491eeca179"+"&q="+plant_name_input
+        url_request = "-list?page="+str(page_num)+"&key="+ key +"&q="+plant_name_input
         return json.loads(urllib.request.urlopen(url=plant_request+url_request).read())
     except urllib.error.URLError as e:
         print(str(e))
         return None
 
 def fetchPlantHardness(id):
-    url_request_id = json.loads(urllib.request.urlopen(url=plant_request+"/details/"+str(id)+"?key=sk-gneG64079b491eeca179").read())
+    url_request_id = json.loads(urllib.request.urlopen(url=plant_request+"/details/"+str(id)+"?key="+key).read())
     temp_plant_hard_min = int(url_request_id["hardiness"]["min"])
     temp_plant_hard_max = int(url_request_id["hardiness"]["max"])
     plant_list_data[id] = url_request_id
@@ -82,7 +84,7 @@ def webDataRetrieve(id,dict):
             other_name = other_name + name+". "
     else:
         other_name = 'Sorry no data found.'
-    if 'regular_url' in dict[id]['default_image']:
+    if 'thumbnail' in dict[id]['default_image']:
         image = dict[id]['default_image']['regular_url']
     else:
         image = 'Sorry no data found.'
