@@ -82,8 +82,8 @@ def webDataRetrieve(id,dict):
             other_name = other_name + name+". "
     else:
         other_name = 'Sorry no data found.'
-    if 'thumbnail' in dict[id]['default_image']:
-        image = dict[id]['default_image']['thumbnail']
+    if 'regular_url' in dict[id]['default_image']:
+        image = dict[id]['default_image']['regular_url']
     else:
         image = 'Sorry no data found.'
     plant_type = dict[id]['type']
